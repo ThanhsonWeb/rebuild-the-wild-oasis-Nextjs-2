@@ -1,5 +1,11 @@
 import Header from "./_components/Header";
 import "./globals.css";
+import { Roboto } from "next/font/google";
+
+const roboto = Roboto({
+	subsets: ["latin"],
+	display: "swap",
+});
 
 export const metadata = {
 	title: {
@@ -12,9 +18,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" className={` h-full antialiased`}>
-			<body className="min-h-full flex flex-col">
+			<body className={`${roboto.className} min-h-full flex flex-col`}>
 				<Header />
-				{/* children = current route */}
 				<main>{children}</main>
 			</body>
 		</html>
