@@ -1,5 +1,5 @@
 import Header from "./_components/Header";
-import "./globals.css";
+import "./_styles/globals.css";
 import { Roboto } from "next/font/google";
 
 const roboto = Roboto({
@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
 		<html lang="en" className={` h-full antialiased`}>
 			<body className={`${roboto.className} min-h-full flex flex-col`}>
 				<Header />
-				<main>{children}</main>
+				<main className="mt-10 mx-10 ">{children}</main>
 			</body>
 		</html>
 	);
