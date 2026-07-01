@@ -1,4 +1,5 @@
-// ⚙️ 2. Create a Supabase client file
+// 1. install Supabase
+// ⚙️ 2. Create a Supabase client file (talk to supabase)
 import { createClient } from "@supabase/supabase-js";
 export const supabase = createClient(
 	process.env.SUPABASE_URL,

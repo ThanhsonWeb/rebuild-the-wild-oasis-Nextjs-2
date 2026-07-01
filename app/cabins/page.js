@@ -1,15 +1,12 @@
 import CabinCard from "@/app/_components/CabinCard";
-import { supabase } from "../_lib/supabase";
+import CabinList from "../_components/CabinList";
+import { Suspense } from "react";
+import Spinner from "../_components/Spinner";
 export const metadata = {
 	title: "Cabins",
 };
 
 export default async function Page() {
-	// const cabins = [];
-	const { data: cabins, error } = await supabase.from("cabins").select("*");
-	if (error) {
-		return <p>Error loading cabins: {error.message}</p>;
-	}
 	return (
 		<div>
 			<h1 className="text-4xl mb-5 text-yellow-500 font-medium">
@@ -24,17 +21,9 @@ export default async function Page() {
 				Welcome to paradise.
 			</p>
 
-			{cabins.length > 0 ? (
-				<div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
-					{cabins.map((cabin) => (
-						<CabinCard cabin={cabin} key={cabin.id} />
-					))}
-				</div>
-			) : (
-				<p className="text-2xl text-center mt-15 bg-amber-200 font-semibold text-amber-900 rounded-2xl p-2">
-					Sorry ! Our Cabins are not available now 🌟
-				</p>
-			)}
+			<Suspense fallback={<Spinner /> }>
+				<CabinList />
+			</Suspense>
 		</div>
 	);
 }
