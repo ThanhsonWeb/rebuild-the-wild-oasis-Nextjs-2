@@ -9,3 +9,17 @@ export async function getCabins() {
 
 	return data;
 }
+
+export async function getCabin(cabinId) {
+	const { data, error } = await supabase
+		.from("cabins")
+		.select("*")
+		.eq("id", cabinId)
+		.single();
+
+	if (error) {
+		throw new Error("Could not fetch Cabin ! ");
+	}
+
+	return data;
+}
