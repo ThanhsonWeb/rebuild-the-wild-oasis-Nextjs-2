@@ -2,8 +2,12 @@ import { getCabin } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import { addISOWeekYears } from "date-fns";
 import { ca } from "date-fns/locale";
-
-
+//dynamic title
+export async function generateMetadata({ params }) {
+	const { cabinId } = await params;
+	const cabin = await getCabin(cabinId);
+	return { title: `Cabin ${cabin.name}` };
+}
 
 export default async function Page({ params }) {
 	const { cabinId } = await params;
