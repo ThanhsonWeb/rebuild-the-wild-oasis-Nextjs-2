@@ -6,7 +6,10 @@ export const metadata = {
 	title: "Cabins",
 };
 
-export default async function Page() {
+export default async function Page({ searchParams }) {
+	const query = await searchParams;
+	const filter = query?.capacity ?? "all";
+
 	return (
 		<div>
 			<h1 className="text-4xl mb-5 text-yellow-500 font-medium">
@@ -21,8 +24,8 @@ export default async function Page() {
 				Welcome to paradise.
 			</p>
 
-			<Suspense fallback={<Spinner /> }>
-				<CabinList />
+			<Suspense fallback={<Spinner />}>
+				<CabinList filter={filter} />
 			</Suspense>
 		</div>
 	);

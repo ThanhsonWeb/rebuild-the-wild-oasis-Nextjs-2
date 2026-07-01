@@ -1,4 +1,5 @@
 import { getCabin } from "@/app/_lib/data-service";
+import TextExpander from "@/starter/components/TextExpander";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import { addISOWeekYears } from "date-fns";
 import { ca } from "date-fns/locale";
@@ -28,7 +29,9 @@ export default async function Page({ params }) {
 						Cabin {name}
 					</h3>
 
-					<p className="text-lg text-primary-300 mb-10">{description}</p>
+					<p className="text-lg text-primary-300 mb-10">
+						<TextExpander>{description}</TextExpander>
+					</p>
 
 					<ul className="flex flex-col gap-4 mb-7">
 						<li className="flex gap-3 items-center">
