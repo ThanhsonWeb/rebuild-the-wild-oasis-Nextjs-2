@@ -1,11 +1,15 @@
 import CabinCard from "@/app/_components/CabinCard";
+import { supabase } from "../_lib/supabase";
 export const metadata = {
 	title: "Cabins",
 };
 
-export default function Page() {
-	const cabins = [];
-
+export default async function Page() {
+	// const cabins = [];
+	const { data: cabins, error } = await supabase.from("cabins").select("*");
+	if (error) {
+		return <p>Error loading cabins: {error.message}</p>;
+	}
 	return (
 		<div>
 			<h1 className="text-4xl mb-5 text-yellow-500 font-medium">
@@ -28,7 +32,7 @@ export default function Page() {
 				</div>
 			) : (
 				<p className="text-2xl text-center mt-15 bg-amber-200 font-semibold text-amber-900 rounded-2xl p-2">
-					Sorry ! Our Cabins is not available now 🌟
+					Sorry ! Our Cabins are not available now 🌟
 				</p>
 			)}
 		</div>
