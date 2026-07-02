@@ -25,7 +25,7 @@ function ReservationForm({ cabin }) {
 					<select
 						name="numGuests"
 						id="numGuests"
-						className="px-5 py-3 bg-primary-200 text-gray-800 w-full shadow-sm rounded-sm"
+						className="px-5 py-3 bg-primary-200 text-gray-400 w-full shadow-sm rounded-sm"
 						required
 					>
 						<option value="" key="">
