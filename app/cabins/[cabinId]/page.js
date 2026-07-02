@@ -1,8 +1,11 @@
+import Reservation from "@/app/_components/Reservation";
+import Spinner from "@/app/_components/Spinner";
 import { getCabin } from "@/app/_lib/data-service";
 import TextExpander from "@/starter/components/TextExpander";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import { addISOWeekYears } from "date-fns";
 import { ca } from "date-fns/locale";
+import { Suspense } from "react";
 //dynamic title
 export async function generateMetadata({ params }) {
 	const { cabinId } = await params;
@@ -23,7 +26,6 @@ export default async function Page({ params }) {
 				<div className="relative scale-[1.15] -translate-x-3">
 					<img src={image} alt={`Cabin ${name}`} />
 				</div>
-
 				<div>
 					<h3 className="text-accent-100 font-black text-7xl mb-5 translate-x-[-254px] bg-primary-950 p-6 pb-1 w-[150%]">
 						Cabin {name}
@@ -59,10 +61,14 @@ export default async function Page({ params }) {
 			</div>
 
 			<div>
-				<h2 className="text-5xl font-semibold text-center">
+				<h2 className="text-5xl font-semibold text-center mb-5">
 					Reserve today. Pay on arrival.
 				</h2>
 			</div>
+
+			<Suspense fallback={<Spinner />}>
+				<Reservation cabin={cabin} />
+			</Suspense>
 		</div>
 	);
 }
